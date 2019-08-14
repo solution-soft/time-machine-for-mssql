@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 MSSQL_HOME=/var/opt/mssql
 MSADMIN_UID=${MSADMIN_USER:-999}
