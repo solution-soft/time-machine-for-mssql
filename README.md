@@ -44,6 +44,6 @@ services:
 
 The UID to run Microsoft SQL Server is set to be 1000.  The floating license server IP is `192.168.20.40`, listening port is `57777` and the passcode/token is `docker`.
 
-Time Machine agent will listen to port `7800`.  In our sample, this port is mapped to port `17800` in the host machine.
+Time Machine agent will listen to port `7800`.  In our sample, this port is mapped to port `17800` and SQL Server port `1433` is mapped to `1433` in the host machine.
 
-For dertails, please refer to the github repo at: <https://github.com/solution-soft/time-machine-for-mssql>
+For dertails, please refer to the github repo at: [https://github.com/solution-soft/time-machine-for-mssql](https://github.com/solution-soft/time-machine-for-mssql).
