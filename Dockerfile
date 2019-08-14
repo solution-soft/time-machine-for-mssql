@@ -30,6 +30,7 @@ USER root
 RUN apt-get update \
 &&  apt-get install -y --no-install-recommends supervisor \
 &&  mkdir -p /tmdata /var/opt/mssql \
+&&  rm -rf /etc/supervisor* \
 &&  rm -rf /var/lib/apt/lists/*
 
 # -- copy files from the centos image
