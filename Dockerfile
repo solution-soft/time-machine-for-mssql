@@ -5,7 +5,7 @@ FROM  mcr.microsoft.com/mssql/server:2017-latest
 LABEL vendor="SolutionSoft Systems, Inc"
 LABEL maintainer="kzhao@solution-soft.com"
 
-ENV MSADMIN_USER=999 \
+ENV MSADMIN_USER=1000 \
     MSADMIN_GROUP=0	
 
 ENV ACCEPT_EULA Y

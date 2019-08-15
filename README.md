@@ -9,7 +9,7 @@ This docker image is constructed on top of the Microsoft SQL Server for linux im
 
 When the container starts, daemon `supervisord` will be spawned to manage all these running programs.
 
-In constructing this image, we made the decision to run Microsoft SQL Server as the user `msadmin`. By default, user `msadmin` has the UID 999 and GID 0. One can easily change the UID and GID values for user `msadmin` through the environment variables `MSADMIN_UID` and `MSADMIN_GID`.  
+In constructing this image, we made the decision to run Microsoft SQL Server as the user `msadmin`. By default, user `msadmin` has the UID 1000 and GID 0. One can easily change the UID and GID values for user `msadmin` through the environment variables `MSADMIN_UID` and `MSADMIN_GID`.  
 
 To enable Time Machine functions, one need to inform the container the parameters of the floating license server.  These parameters are:
 
