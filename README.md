@@ -2,6 +2,8 @@
 
 SolutionSoft Systems, Inc. has released the docker image to enable time travel in the [Linux based container](https://hub.docker.com/r/microsoft/mssql-server-linux) for Microsoft SQL Server. You can pull the prebuilt [docker image](https://hub.docker.com/r/solutionsoft/time-machine-for-mssql) from docker hub.
 
+## Introduction ##
+
 This docker image is constructed on top of the Microsoft SQL Server for linux image.  Two additional running programs are included:
 
 1. `tmlicd`, the license service daemon which communicates with the SolutionSoft Floating License Server, and
@@ -18,6 +20,8 @@ To enable Time Machine functions, one need to inform the container the parameter
 3. License server token.
 
 All these parameters can be defined by the environment variables `TM_LICHOST`, `TM_LICPORT` and `TM_LICPASS`.
+
+## Example ##
 
 The following is a sample docker compose `YML` file for running the container:
 
@@ -44,6 +48,7 @@ services:
 
 The UID to run Microsoft SQL Server is set to be 1000.  The floating license server IP is `192.168.20.40`, listening port is `57777` and the passcode/token is `docker`.
 
-Time Machine agent will listen to port `7800`.  In our sample, this port is mapped to port `17800` and SQL Server port `1433` is mapped to `1433` in the host machine.
+Time Machine agent will listen to port `7800`.  In this eample, this port is mapped to port `17800` and SQL Server port `1433` is mapped to `1433` in the host machine.
 
 For dertails, please refer to the github repo at: [https://github.com/solution-soft/time-machine-for-mssql](https://github.com/solution-soft/time-machine-for-mssql).
+
