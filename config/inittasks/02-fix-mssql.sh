@@ -23,3 +23,5 @@ useradd -u $MSADMIN_UID -g $MSADMIN_GID -s /bin/bash -d /tmp msadmin
 # Fix permissions for the DB working environment
 chown -R $MSADMIN_UID:$MSADMIN_GID $MSSQL_HOME
 chmod 770 $MSSQL_HOME
+
+exit 0
