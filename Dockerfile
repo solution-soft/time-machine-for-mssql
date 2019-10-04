@@ -19,8 +19,7 @@ ENV TM_LICHOST=172.0.0.1 \
     TM_LICPORT=57777 \
     TM_LICPASS=docker
 
-ENV TM_VERSION=12.9R3 \
-    TMAGENT_DATADIR=/tmdata/data \
+ENV TMAGENT_DATADIR=/tmdata/data \
     TMAGENT_LOGDIR=/tmdata/log
 
 # For installing software packages
@@ -33,9 +32,12 @@ RUN apt-get update \
 &&  rm -rf /etc/supervisor* \
 &&  rm -rf /var/lib/apt/lists/*
 
-# -- copy files from the centos image
+# -- copy from the build image
+COPY --from=build /tini /
 COPY --from=build /etc/ssstm /etc/ssstm
 COPY --from=build /usr/local/bin/tmlicd /usr/local/bin/tmlicd
+
+# -- copy from the local filesystem
 COPY config /
 COPY preload /etc/ssstm/
 
@@ -49,5 +51,5 @@ EXPOSE 7800
 VOLUME /tmdata
 VOLUME /var/opt/mssql
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
