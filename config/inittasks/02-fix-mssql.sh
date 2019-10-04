@@ -7,11 +7,11 @@ MSADMIN_UID=${MSADMIN_USER:-999}
 MSADMIN_GID=${MSADMIN_GROUP:-0}
 
 # Create MSSQL home if it does not exist
-[ -d $MSSQL_HOME ] || mkdir -p $MSSQL_HOME
+mkdir -p $MSSQL_HOME
 
 # Make sure there is enough RAM
 avail=`free -g -t | grep Mem | awk '{ print $7}'`
-if [[ $avail < "2" ]]; then
+if [ $avail -lt 2 ]; then
   echo "[Error] There is not enough free mem to run Microsoft MSSQL server!"
   exit 1
 fi
