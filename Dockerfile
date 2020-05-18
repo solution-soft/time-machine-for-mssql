@@ -1,3 +1,5 @@
+FROM  krallin/ubuntu-tini:xenial AS bootstrap
+
 FROM  solutionsoft/time-machine-for-centos7:latest AS build
 
 FROM  mcr.microsoft.com/mssql/server:2017-latest
@@ -9,7 +11,7 @@ ENV MSADMIN_USER=1000 \
     MSADMIN_GROUP=0	
 
 ENV ACCEPT_EULA Y
-ENV SA_PASSWORD YOURPWDHERE
+ENV SA_PASSWORD yourStrong(!)Password
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
@@ -33,16 +35,12 @@ RUN apt-get update \
 &&  rm -rf /var/lib/apt/lists/*
 
 # -- copy from the build image
-COPY --from=build /tini /
+COPY --from=bootstrap /usr/bin/tini /usr/bin/tini
 COPY --from=build /etc/ssstm /etc/ssstm
 COPY --from=build /usr/local/bin/tmlicd /usr/local/bin/tmlicd
 
 # -- copy from the local filesystem
-COPY config /
-COPY preload /etc/ssstm/
-
-# -- setup preloading
-RUN  echo "/etc/ssstm/lib64/libssstm.so.1.0" > /etc/ld.so.preload
+COPY baseimg /
 
 # Expose the ports we're interested in
 EXPOSE 1433
@@ -51,5 +49,5 @@ EXPOSE 7800
 VOLUME /tmdata
 VOLUME /var/opt/mssql
 
-ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
