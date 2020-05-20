@@ -9,7 +9,7 @@ This docker image is constructed on top of the Microsoft SQL Server for linux im
 1. `tmlicd`, the license service daemon which communicates with the SolutionSoft Floating License Server, and
 2. `tmagent`, the Time Machine agent which allows virtual clock manipulation from remote, using tools such as Time Machine Console, and Sync Server.
 
-When the container starts, daemon `supervisord` will be spawned to manage all these running programs.
+We use the process supervisor [s6](http://skarnet.org/software/s6/overview.html) to manage all these running programs, including the *Microsoft SQL Server*.
 
 In constructing this image, we made the decision to run Microsoft SQL Server as the user `msadmin`. By default, user `msadmin` has the UID 1000 and GID 0. One can easily change the UID and GID values for user `msadmin` through the environment variables `MSADMIN_UID` and `MSADMIN_GID`.  
 

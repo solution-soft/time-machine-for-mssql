@@ -6,11 +6,12 @@ LABEL maintainer="kzhao@solution-soft.com"
 ARG S6_OVERLAY_VERSION="v2.0.0.1"
 ARG TM_VERSION="12.9R3"
 
+# Follow mssql2019 docker convention
+ARG MSSQL_UID=10001
+ARG MSSQL_GID=0	
+
 ARG DEFAULT_USER=time-traveler
 ARG DEFAULT_HOME=/home/time-traveler
-
-ENV MSADMIN_USER=1000 \
-    MSADMIN_GROUP=0	
 
 ENV ACCEPT_EULA=Y \
     SA_PASSWORD=yourStrong(!)Password \
@@ -29,14 +30,9 @@ USER root
 ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz /tmp
 COPY ./tmbase-${TM_VERSION}.tgz /tmp/tmbase.tgz
 COPY ./build /
+COPY ./ubuntu_install.sh /install.sh
 
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && rm -f /tmp/s6-overlay-amd64.tar.gz \
-&&  tar xzf /tmp/tmbase.tgz -C / && rm -f /tmp/tmbase.tgz \
-&&  apt-get update && apt-get install -y --no-install-recommends iproute2 \
-&&  rm -rf /var/lib/apt/lists/* \
-&&  mkdir -p /tmdata /var/opt/mssql \
-&&  useradd -r -m -d ${DEFAULT_HOME} -s /bin/bash -c "Default Time Travel User" ${DEFAULT_USER} \
-&&  echo '/etc/ssstm/lib64/libssstm.so.1.0' >> /etc/ld.so.preload
+RUN sh /install.sh && rm -f /install.sh
 
 # Expose the ports we're interested in
 EXPOSE 1433
