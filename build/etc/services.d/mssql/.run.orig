@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-set -e
-
-cd /
-eaxport USER=msadmin
-exec s6-envuidgid msadmin /opt/mssql/bin/sqlserver
