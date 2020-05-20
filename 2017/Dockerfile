@@ -30,7 +30,7 @@ USER root
 ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz /tmp
 COPY ./tmbase-${TM_VERSION}.tgz /tmp/tmbase.tgz
 COPY ./build /
-COPY ./ubuntu_install.sh /install.sh
+COPY ./install.sh /
 
 RUN sh /install.sh && rm -f /install.sh
 
