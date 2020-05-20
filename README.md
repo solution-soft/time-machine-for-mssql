@@ -34,7 +34,8 @@ services:
     environment:
       MSADMIN_USER: "1000"
       MSADMIN_GROUP: "0"
-      SA_PASSWORD: "demo$ite"
+      SA_PASSWORD: "yourStrong(!)Password"
+      MSSQL_PID: "Express"
       TM_LICHOST: "192.168.20.40"
       TM_LICPORT: "57777"
       TM_LICPASS: "docker"
