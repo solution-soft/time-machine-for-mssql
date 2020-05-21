@@ -1,7 +1,6 @@
 #!/bin/sh
 
 set -e
-set -x
 
 MSSQL_HOME=/var/opt/mssql
 MSSQL_UID=${MSSQL_UID:-10001}
@@ -24,7 +23,7 @@ apt-get update;
 apt-get install -y --no-install-recommends iproute2;
 apt-get autoremove --purge;
 apt-get clean;
-rm -rf /var/lib/apt/lists/*
+rm -rf /var/lib/apt/lists/*;
 
 # create Time Machine and MSSQL data directories
 mkdir -p /tmdata /var/opt/mssql
