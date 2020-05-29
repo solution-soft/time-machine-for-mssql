@@ -6,7 +6,7 @@ services:
     environment:
       SA_PASSWORD:   "demo$ite"
       MSSQL_PID:     "Express"
-      SQLCOLLATION:  "Latin1_General_CI_AS"
+      MSSQL_COLLATION: "Latin1_General_CI_AS"
       TM_LICHOST:    "192.168.20.40"
       TM_LICPORT:    "57777"
       TM_LICPASS:    "docker"
