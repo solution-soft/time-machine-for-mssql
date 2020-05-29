@@ -1,15 +1,14 @@
 version: "3"
 services:
   db:
-    image: solutionsoft/time-machine-for-mssql:latest
+    image: solutionsoft/time-machine-for-mssql:2017-latest
     restart: always
     environment:
-      MSADMIN_USER:  "1000"
-      MSADMIN_GROUP: "0"
       SA_PASSWORD:   "demo$ite"
-      TM_LICHOST: "192.168.20.40"
-      TM_LICPORT: "57777"
-      TM_LICPASS: "docker"
+      MSSQL_PID:     "Express"
+      TM_LICHOST:    "192.168.20.40"
+      TM_LICPORT:    "57777"
+      TM_LICPASS:    "docker"
     ports:
       - "17800:7800"
       - "1433:1433"
