@@ -16,9 +16,10 @@ ARG MSSQL_GROUP=0
 ENV MSADMIN_USER=1000 \
     MSADMIN_GROUP=0	
 
-ENV ACCEPT_EULA=Y \
-    SA_PASSWORD=yourStrong(!)Password \
-    MSSQL_PID=Express
+ENV ACCEPT_EULA="Y" \
+    SA_PASSWORD="yourStrong(!)Password" \
+    MSSQL_PID="Express" \
+    MSSQL_COLLATION=""
 
 ENV TM_LICHOST=172.0.0.1 \
     TM_LICPORT=57777 \

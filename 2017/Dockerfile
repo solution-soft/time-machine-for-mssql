@@ -13,9 +13,10 @@ ARG MSSQL_GID=0
 ARG DEFAULT_USER=time-traveler
 ARG DEFAULT_HOME=/home/time-traveler
 
-ENV ACCEPT_EULA=Y \
-    SA_PASSWORD=yourStrong(!)Password \
-    MSSQL_PID=Express
+ENV ACCEPT_EULA="Y" \
+    SA_PASSWORD="yourStrong(!)Password" \
+    MSSQL_PID="Express" \
+    MSSQL_COLLATION=""
 
 ENV TM_LICHOST=172.0.0.1 \
     TM_LICPORT=57777 \

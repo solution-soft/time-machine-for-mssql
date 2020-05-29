@@ -1,3 +1,8 @@
 #!/usr/bin/with-contenv sh
 
+if [ ! -z ${MSSQL_COLLATION} ] && [ -d /var/opt/mssql/data ]; then
+  # change server collation
+  s6-setuidgid mssql /opt/mssql/bin/sqlservr -q${MSSQL_COLLATION}
+fi
+
 exec s6-setuidgid mssql /opt/mssql/bin/sqlservr
