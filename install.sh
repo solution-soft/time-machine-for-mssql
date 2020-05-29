@@ -40,10 +40,7 @@ else
 fi
 
 # create user 'time-traveler'
-cnt=$(id time-traveler | wc -l)
-if [ $cnt -eq 0 ]; then
-    useradd -d /tmp time-traveler
-fi
+useradd -d /tmp time-traveler
 
 # setup Time Machine preloading library
 echo '/etc/ssstm/lib64/libssstm.so.1.0' >> /etc/ld.so.preload
