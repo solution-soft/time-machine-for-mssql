@@ -39,6 +39,9 @@ else
     useradd -u $MSSQL_UID -g $MSSQL_GID -s /bin/bash -d /var/opt/mssql mssql
 fi
 
+# change proper permission for MSSQL  data repo dir
+chown $MSSQL_UID:$MSSQL_GID /var/opt/mssql
+
 # create user 'time-traveler'
 useradd -d /tmp time-traveler
 
