@@ -14,7 +14,7 @@ ARG DEFAULT_USER=time-traveler
 ARG DEFAULT_HOME=/home/time-traveler
 
 ENV ACCEPT_EULA="Y" \
-    SA_PASSWORD="yourStrong(!)Password" \
+    MSSQL_SA_PASSWORD="yourStrong(!)Password" \
     MSSQL_PID="Express" \
     MSSQL_COLLATION=""
 
@@ -40,6 +40,5 @@ EXPOSE 1433
 EXPOSE 7800
 
 VOLUME /tmdata
-VOLUME /var/opt/mssql
 
 ENTRYPOINT ["/init"]

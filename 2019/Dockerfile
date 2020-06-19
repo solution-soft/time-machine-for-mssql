@@ -17,7 +17,7 @@ ENV MSADMIN_USER=1000 \
     MSADMIN_GROUP=0	
 
 ENV ACCEPT_EULA="Y" \
-    SA_PASSWORD="yourStrong(!)Password" \
+    MSSQL_SA_PASSWORD="yourStrong(!)Password" \
     MSSQL_PID="Express" \
     MSSQL_COLLATION=""
 
@@ -43,6 +43,5 @@ EXPOSE 1433
 EXPOSE 7800
 
 VOLUME /tmdata
-VOLUME /var/opt/mssql
 
 ENTRYPOINT ["/init"]
