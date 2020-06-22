@@ -7,9 +7,18 @@ MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD:-"yourStrong(!)Password"}
 MSSQL_PID=${MSSQL_PID:-"Express"}
 MSSQL_COLLATION=${MSSQL_COLLATION:-""}
 
-if [ ! -z ${MSSQL_COLLATION} ] && [ -d /var/opt/mssql/data ]; then
-  # change server collation
-  s6-setuidgid mssql /opt/mssql/bin/sqlservr -q${MSSQL_COLLATION}
+HELPER=""
+if [ -f "/opt/mssql/bin/nonroot_msg.sh" ]; then
+  # For 2017 MSSQL release
+  HELPER="/opt/mssql/bin/nonroot_msg.sh"
+elif [ -f /opt/mssql/bin/permissions_check.sh ]; then
+  # For 2019 MSSQL release
+  HELPER="/opt/mssql/bin/permissions_check.sh"
 fi
 
-exec s6-setuidgid mssql /opt/mssql/bin/permissions_check.sh /opt/mssql/bin/sqlservr
+if [ ! -z ${MSSQL_COLLATION} ] && [ -d /var/opt/mssql/data ]; then
+  # change server collation
+  s6-setuidgid mssql ${HELPER} /opt/mssql/bin/sqlservr -q${MSSQL_COLLATION}
+fi
+
+exec s6-setuidgid mssql ${HELPER} /opt/mssql/bin/sqlservr
