@@ -13,9 +13,6 @@ ARG DEFAULT_HOME=/home/time-traveler
 ARG MSSQL_USER=10001
 ARG MSSQL_GROUP=0	
 
-ENV MSADMIN_USER=1000 \
-    MSADMIN_GROUP=0	
-
 ENV ACCEPT_EULA="Y" \
     MSSQL_SA_PASSWORD="yourStrong(!)Password" \
     MSSQL_PID="Express" \
